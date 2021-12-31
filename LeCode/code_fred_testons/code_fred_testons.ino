@@ -16,7 +16,7 @@ void setup() {
   right_piano_initializing();
   
   tone2.begin(jsp_3_l);
-  c_c_h(left_tone);
+  cch_short(left_tone);
 }
 
 void loop() {
