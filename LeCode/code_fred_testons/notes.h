@@ -241,8 +241,19 @@ int pitchbend_variations_set[13] = {};
 //des 13 notes de the_set[] pour l'effet pitchbend
 
 
+const int where_poten = 0;
+int an0;
+
+int actual_frequencies[13] = {};
+//liste contenant la note à jouer pour chaque
+//touche en fonction de an0
+
+
 /* 
 the_set[], current_set_number et pitchbend_variations_set[]
 seront modifiés uniquement lorsqu'il y aura un changement de set,
 permettant ainsi de limiter les calculs.
+En revanche, actual_frequencies[] sera modifié à chaque fois
+que l'on modifiera la valeur renvoyée par le potentiomètre
+(qui sera an0).
 */

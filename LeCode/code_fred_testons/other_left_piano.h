@@ -47,7 +47,7 @@ const int buzzer_left = 2;
 Tone left_tone;
 
 void test_buzzer_left(int t=100) {
-  buzzer_test(left_tone, the_set[7], t);
+  buzzer_test(left_tone, actual_frequencies[7], t);
 };
 
 
@@ -104,7 +104,9 @@ void left_piano_checking() {
 
   while (tl_played) {
     if (correct_left_playing()) {
+      actual_frequencies_update();
       test_buzzer_left();
+      buzzer_test(tone2, NOTE_A4);
       
       //Reste à savoir comment marche ce petit piano de gauche !
 

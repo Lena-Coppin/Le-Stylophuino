@@ -41,18 +41,28 @@ void change_for_pitchbend(int n, int s) {
 
 
 void choosen_set(int i){
+  if (i<=1) {i=2;}
+  else if (i>=8) {i=7;}
   /*L'entier i est compris entre 2 et 7 inclus.
-  i ne vaut jamais 1 car sinon les prmières notes
+  i ne vaut jamais 1 car sinon les premières notes
   de the_set[] seraient inaudibles.*/
   current_set_number = i;
   int index = 0;
   for (int n = 0; n < 13; n++){
     index = n + (current_set_number - 1) * 12;
-    /*L'entier index est compris entre 0 et 84 inclus.
+    /*L'entier index est compris entre 12 et 84 inclus.
     Il parcourt 13 valeurs consécutives,
     en commençant et terminant par un multiple de 12.*/
     the_set[n] = notes[index];  //mise à jour de the_set[]
     change_for_pitchbend(n, index+1);  //mise à jour de pitchbend_variations_set[]
+    }
+};
+
+
+void actual_frequencies_update() {
+  an0 = analogRead(where_poten);
+  for (int i = 0; i < 13; i++){
+    actual_frequencies[i] = the_set[i] + map(an0, 0, 1023, 0, pitchbend_variations_set[i]);
     }
 };
 
