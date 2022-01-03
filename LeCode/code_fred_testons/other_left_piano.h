@@ -14,9 +14,8 @@ const int touche_left_5 = 7;
 const int touche_left_6 = 8;
 const int touche_left_7 = 9;
 const int touche_left_8 = 10;
-const int jsp_1_l = 11;
-const int jsp_2_l = 12;
-const int jsp_3_l = 13;
+const int mineur_left = 11;
+const int majeur_left = 12;
 
 bool tl1;
 bool tl2;
@@ -26,9 +25,8 @@ bool tl5;
 bool tl6;
 bool tl7;
 bool tl8;
-bool j1l = LOW;
-bool j2l = LOW;
-bool j3l = LOW;
+bool minl = LOW;
+bool majl = HIGH;
 
 bool tl1_correcty_played;
 bool tl2_correcty_played;
@@ -60,9 +58,8 @@ void left_piano_initializing() {
   pinMode(touche_left_6, INPUT);
   pinMode(touche_left_7, INPUT);
   pinMode(touche_left_8, INPUT);
-  pinMode(jsp_1_l, INPUT);
-  pinMode(jsp_2_l, INPUT);
-  pinMode(jsp_3_l, INPUT);
+  pinMode(mineur_left, INPUT);
+  pinMode(majeur_left, INPUT);
   left_tone.begin(buzzer_left);
   /*Pas de pinMode() pour les buzzers !
   La bibliothèque <Tone.h> s'en charge !*/
@@ -105,7 +102,7 @@ void left_piano_checking() {
   while (tl_played) {
     if (correct_left_playing()) {
       actual_frequencies_update();
-      test_buzzer_left();
+      //test_buzzer_left();
       buzzer_test(tone2, NOTE_A4);
       
       //Reste à savoir comment marche ce petit piano de gauche !

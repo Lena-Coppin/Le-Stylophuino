@@ -9,7 +9,8 @@
 "Ching Cheng Hanji" de l'artiste Dehao Zhang.*/
 void cch_short(Tone t1, char a='\0') {
   int i = 55;
-  if (a=='-') {i = i - 12;}
+  if (a=='_') {i = i - 24;}
+  else if (a=='-') {i = i - 12;}
   else if (a=='+') {i = i + 12;}
   t1.stop();
   t1.play(notes[i], 225);
@@ -28,7 +29,8 @@ void cch_short(Tone t1, char a='\0') {
 /*Voici l'hymne national de la Russie.*/
 void urss(Tone t1, char a='\0') {
   int i = 43;
-  if (a=='-') {i = i - 12;}
+  if (a=='_') {i = i - 12;}
+  else if (a=='-') {i = i - 12;}
   else if (a=='+') {i = i + 12;}
   
   int n1 = notes[i - 7];      //C-
