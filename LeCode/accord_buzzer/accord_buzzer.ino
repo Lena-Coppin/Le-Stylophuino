@@ -17,6 +17,8 @@ int but8 = 7;   //SOL3
 int but10 = 8;  //LA3
 int but12 = 9;  //SI3
 
+int but_min = 11;  //MINEUR
+
 int buzzer = 2;
 
 void setup()
@@ -29,6 +31,8 @@ void setup()
   pinMode(but8, INPUT);
   pinMode(but10, INPUT);
   pinMode(but12, INPUT);
+  
+  pinMode(but_min, INPUT);
 
   //Déclarations pin du buzzer en OUTPUT
   pinMode(buzzer, OUTPUT);
@@ -45,13 +49,15 @@ void loop()
   int b8 = digitalRead(but8);
   int b10 = digitalRead(but10);
   int b12 = digitalRead(but12);
+  
+  int b_min = digitalRead(but_min);
 
   
 //b1=1
   if( b1 == 1 ) {
     tone(buzzer, 262, 200);
     delay(180);
-    tone(buzzer, 330, 200);
+    tone(buzzer, 330, 200);       //311 si mineur
     delay(180);
     tone(buzzer, 392, 200);
     delay(180);
@@ -88,7 +94,7 @@ void loop()
               if (b12 == 1){
                 tone(buzzer, 494, 200);
                 delay(180);
-                tone(buzzer, 622, 200);
+                tone(buzzer, 622, 200);   //587 si mineur
                 delay(180);
                 tone(buzzer, 740, 200);
                 delay(180);
@@ -104,7 +110,7 @@ void loop()
             if (b10 == 1){
               tone(buzzer, 440, 200);
               delay(180);
-              tone(buzzer, 554, 200);
+              tone(buzzer, 554, 200);     //523 si mineur
               delay(180);
               tone(buzzer, 639, 200);
               delay(180);
@@ -114,7 +120,7 @@ void loop()
           if (b8 == 1){
             tone(buzzer, 392, 200);
             delay(180);
-            tone(buzzer, 494, 200);
+            tone(buzzer, 494, 200);      //466 si mineur
             delay(180);
             tone(buzzer, 587, 200);
             delay(180);
@@ -124,7 +130,7 @@ void loop()
         if (b6 == 1){
           tone(buzzer, 349, 200);
           delay(180);
-          tone(buzzer, 440, 200);
+          tone(buzzer, 440, 200);       //415 si mineur
           delay(180);
           tone(buzzer, 523, 200);
           delay(180);
@@ -134,7 +140,7 @@ void loop()
       if (b5 == 1){
           tone(buzzer, 330, 200);
           delay(180);
-          tone(buzzer, 415, 200);
+          tone(buzzer, 415, 200);       //392 si mineur
           delay(180);
           tone(buzzer, 494, 200);
           delay(180);        
@@ -144,7 +150,7 @@ void loop()
   if ( b3 == 1 ){
       tone(buzzer, 294, 200);
       delay(180);
-      tone(buzzer, 370, 200);
+      tone(buzzer, 370, 200);       //349 si mineur
       delay(180);
       tone(buzzer, 440, 200);
       delay(180); 
