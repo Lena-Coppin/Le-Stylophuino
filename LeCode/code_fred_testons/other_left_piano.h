@@ -118,11 +118,11 @@ void fast_3_times_200_update_left(int a, int b, int c) {
   for (int i = 0; i < 3; i++) {
     left_tone.play(mini_pad[index[i]], 200);
     left_t_update();
-    if (tl_played && correct_left_playing()) {break;}
+    if (!tl_played || !correct_left_playing()) {break;}
     for (int j = 0; j < 4; j++) {
       delay(50);
       left_t_update();
-      if (tl_played && correct_left_playing()) {break;}
+      if (!tl_played || !correct_left_playing()) {break;}
       }
     }
 };
