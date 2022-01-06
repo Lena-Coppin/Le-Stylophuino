@@ -5,6 +5,7 @@
 
 #include "principal_right_piano.h"
 #include "other_left_piano.h"
+#include "general_play.h"
 
 #include "melodies.h"
 

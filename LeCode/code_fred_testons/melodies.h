@@ -20,7 +20,7 @@ void cch_short(Tone t1, char a='\0') {
   t1.play(notes[i-2], 225);
   delay(325);
   t1.play(notes[i], 225);
-  delay(1000);
+  delay(1225);
   t1.stop();
 };
 

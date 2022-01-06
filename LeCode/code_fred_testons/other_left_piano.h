@@ -127,6 +127,15 @@ void fast_3_times_200_update_left(int a, int b, int c) {
     }
 };
 
+void left_play() {
+  int i = quelles_3_touches_gauche();
+  int a; 
+  mineur_ou_majeur();
+  if (minl) {a = 1;}
+  if (majl) {a = 2;}
+  fast_3_times_200_update_left(i, i+a, i+3);
+};
+
 void left_piano_checking() {
   left_t_update();
 
@@ -134,12 +143,7 @@ void left_piano_checking() {
     if (correct_left_playing()) {
       actual_frequencies_update();
 
-      int indice = quelles_3_touches_gauche();
-      int mnj; 
-      mineur_ou_majeur();
-      if (minl) {mnj = 1;}
-      if (majl) {mnj = 2;}
-      fast_3_times_200_update_left(indice, indice+mnj, indice+3);
+      left_play();
       
       left_t_update();
       commands(Serial.read());

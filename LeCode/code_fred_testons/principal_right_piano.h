@@ -150,7 +150,7 @@ bool correct_right_playing() {
   return (a || b || c || d);
 };
 
-void quelle_touche_droite(int t = 100) {
+void right_play(int t = 100) {
   int i; 
   if (tr1_correctly_played) {i = 0;}
   else if (tr2_correctly_played) {i = 1;}
@@ -173,9 +173,8 @@ void right_piano_checking() {
   while (tr_played) {
     if (correct_right_playing()) {
       actual_frequencies_update();
-      Serial.println(actual_frequencies[0]);
 
-      quelle_touche_droite();
+      right_play();
 
       right_t_update();
     }
