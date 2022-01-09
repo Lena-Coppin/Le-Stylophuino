@@ -274,3 +274,15 @@ const int mini_pad[28] = {
 mini_pad[] est le set de note pour
 le piano secondaire gauche.
 */
+
+
+int left_index[3] = {NOTE_C4, NOTE_E4, NOTE_G4};
+
+/*
+left_index[] est la liste d'indices qui correspondent
+aux trois notes de mini_pad[] qui seront jouées par
+le piano secondaire gauche. left_index[] sera mis
+à jour à chaque fois que l'on presse une touche
+différente et/ou que l'on passe d'un accord mineur
+à majeur et vice versa (sur le piano gauche).
+*/

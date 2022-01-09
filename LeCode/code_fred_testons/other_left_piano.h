@@ -113,10 +113,9 @@ int quelles_3_touches_gauche() {
   return i;
 };
 
-void fast_3_times_200_update_left(int a, int b, int c) {
-  int index[3] = {a, b, c};
+void fast_3_times_200_update_left() {
   for (int i = 0; i < 3; i++) {
-    left_tone.play(mini_pad[index[i]], 200);
+    left_tone.play(mini_pad[left_index[i]], 200);
     left_t_update();
     if (!tl_played || !correct_left_playing()) {break;}
     for (int j = 0; j < 4; j++) {
@@ -133,21 +132,23 @@ void left_play() {
   mineur_ou_majeur();
   if (minl) {a = 1;}
   if (majl) {a = 2;}
-  fast_3_times_200_update_left(i, i+a, i+3);
+  left_index[0] = i;
+  left_index[1] = i+a;
+  left_index[2] = i+3;
+  fast_3_times_200_update_left();
 };
 
 void left_piano_checking() {
   left_t_update();
-
   while (tl_played) {
     if (correct_left_playing()) {
       actual_frequencies_update();
 
       left_play();
       
-      left_t_update();
-      commands(Serial.read());
     }
+    left_t_update();
+    commands(Serial.read());
   }
   left_tone.stop();
 };

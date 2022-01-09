@@ -18,7 +18,5 @@ void setup() {
 
 void loop() {
   commands(Serial.read());
-  actual_frequencies_update();
-  left_piano_checking();
-  //right_piano_checking();
+  pianos_checking();
 }

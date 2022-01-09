@@ -176,9 +176,9 @@ void right_piano_checking() {
 
       right_play();
 
-      right_t_update();
     }
+    right_t_update();
+    commands(Serial.read());
   }
   right_tone.stop();
-  
 };

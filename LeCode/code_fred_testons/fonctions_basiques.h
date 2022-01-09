@@ -85,7 +85,7 @@ void set_moins() {
 
 void first_initializing() {
   Serial.begin(9600);
-  choosen_set(2);
+  choosen_set(4);
 };
 
 
@@ -210,8 +210,14 @@ void print_variation_set() {
 
 
 void print_truth(bool a) {
-  if (a==HIGH) {Serial.println("True");}
+  if (a) {Serial.println("True");}
   else {Serial.println("False");}
+};
+
+
+void print_minmaj(bool a, bool b) {
+  if (a) {Serial.print("min");}
+  else if (b) {Serial.print("maj");}
 };
 
 
