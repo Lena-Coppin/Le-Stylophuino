@@ -324,9 +324,10 @@ en cours d'exécution et de la recommencer
 
 
 
-int special_r_gaps[20];       //pour le mode arpège
-int special_r_pad[20];        //pour le mode arpège
-int special_right_index[3];   //pour le mode arpège
+int special_r_gaps[20];                 //pour le mode arpège
+int special_r_set[20];                  //pour le mode arpège
+int special_actual_r_frequencies[20];   //pour le mode arpège
+int special_right_index[3];             //pour le mode arpège
 
 
 

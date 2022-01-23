@@ -130,22 +130,21 @@ void special_arpege_updater() {
   mineur_ou_majeur();
   if (minl) {a = 3;}
   if (majl) {a = 4;}
-  int n = (current_set_number - 1) * 12;
-  special_right_index[0] = n + i;
-  special_right_index[1] = n + i + a;
-  special_right_index[2] = n + i + 7;
+  special_right_index[0] = i;
+  special_right_index[1] = i + a;
+  special_right_index[2] = i + 7;
   actual_frequencies_update();
 };
 
 void left_special_arpege_play(int t=1000) {
   int i;
   if (tl1_correctly_played) {i = 0;}
-  else if (tl2_correctly_played) {i = 1;}
-  else if (tl3_correctly_played) {i = 2;}
-  else if (tl4_correctly_played) {i = 3;}
-  else if (tl5_correctly_played) {i = 4;}
-  else if (tl6_correctly_played) {i = 5;}
-  else if (tl7_correctly_played) {i = 6;}
+  else if (tl2_correctly_played) {i = 2;}
+  else if (tl3_correctly_played) {i = 4;}
+  else if (tl4_correctly_played) {i = 5;}
+  else if (tl5_correctly_played) {i = 7;}
+  else if (tl6_correctly_played) {i = 9;}
+  else if (tl7_correctly_played) {i = 11;}
   left_tone.play(notes[36+i], t);
 };
 
@@ -154,7 +153,7 @@ void arpege_mode(int y=4, int deltime=50) {
     special_arpege_updater();
     commands();
     if (skippable(charblu) || mode_is_changing) {break;}
-    if (right_all_ok()) {right_tone.play(special_r_pad[special_right_index[i]], y*deltime);}
+    if (right_all_ok()) {right_tone.play(special_actual_r_frequencies[special_right_index[i]], 200);}
     else {
       right_tone.stop();
       break;
@@ -162,7 +161,7 @@ void arpege_mode(int y=4, int deltime=50) {
     if (left_all_ok()) {left_special_arpege_play(1000);}
     else {left_tone.stop();}
     for (int j = 0; j < y; j++) {
-      delay(deltime);
+      delay(3);
       special_arpege_updater();
       commands();
       if (skippable(charblu) || mode_is_changing) {break;}
@@ -206,8 +205,10 @@ void pianos_checking(int laps=50) {
     else {basic_updater();}
     
     if (correct_left_playing() || correct_right_playing()) {
-
-      normal_mode(laps);
+      
+      if (mode == 1) {arpege_mode(4, laps);}
+      else {normal_mode(laps);}
+      
     }
     left_t_update();
     right_t_update();

@@ -51,7 +51,9 @@ void choosen_set(int i){
   int index = 0;
   if (mode == 1) {
     for (int n = 0; n < 20; n++) {
-      change_for_pitchbend(n+12*(current_set_number - 1), index+1);  //mise à jour de special_r_gaps[]
+      index = n + (current_set_number - 1) * 12;
+      special_r_set[n] = notes[index];    //mise à jour de special_r_set[]
+      change_for_pitchbend(n, index+1);   //mise à jour de special_r_gaps[]
     }
   }
   else {
@@ -60,8 +62,8 @@ void choosen_set(int i){
       /*L'entier index est compris entre 12 et 84 inclus.
       Il parcourt 13 valeurs consécutives,
       en commençant et terminant par un multiple de 12.*/
-      the_set[n] = notes[index];  //mise à jour de the_set[]
-      change_for_pitchbend(n, index+1);  //mise à jour de pitchbend_variations_set[]
+      the_set[n] = notes[index];          //mise à jour de the_set[]
+      change_for_pitchbend(n, index+1);   //mise à jour de pitchbend_variations_set[]
     }
   }
 };
@@ -71,7 +73,7 @@ void actual_frequencies_update() {
   an0 = analogRead(where_bend);
   if (mode == 1) {
     for (int i = 0; i < 20; i++) {
-      special_r_pad[i] = notes[i + (current_set_number - 1) * 12] + map(an0, 0, 1023, 0, special_r_gaps[i]);
+      special_actual_r_frequencies[i] = special_r_set[i] + map(an0, 0, 1023, 0, special_r_gaps[i]);
     }
   }
   else {
@@ -261,6 +263,17 @@ void print_minmaj(bool a, bool b) {
 };
 
 
+void print_list() {
+  int l = 20;
+  Serial.print("[ ");
+  for (int i = 0; i < l; i++){
+    Serial.print(special_actual_r_frequencies[i]);
+    if (i == l-1) {Serial.println(" ]\n");}
+    else {Serial.print(" ; ");}
+  }
+};
+
+
 /*================================================================*/
 
 
@@ -296,13 +309,17 @@ void commands() {
       case '0':
         if (ancien_mode != 0) {mode_is_changing = HIGH;}
         mode = 0;
+        choosen_set(current_set_number);
         break;
       case '1':
         if (ancien_mode != 1) {mode_is_changing = HIGH;}
         mode = 1;
+        choosen_set(current_set_number);
         break;
     }
   }
+  //Serial.println(mode);
+  //print_truth(mode_is_changing);
 };
 
 
